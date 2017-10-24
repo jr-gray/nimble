@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const controller = require('./controller');
 
-// router.post('/contact', controller.sendEmail);
+router.get('/getData', controller.getData);
 
 module.exports = router;

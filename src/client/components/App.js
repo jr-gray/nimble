@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import CandidateList from './CandidateList';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <h1>WELCOME TO NIMBLE</h1>
+        <CandidateList />
       </div>
     )
   }

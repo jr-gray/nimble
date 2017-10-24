@@ -1,6 +1,8 @@
-module.exports = {
-  sendEmail(req, res) {
+const data = require('../database/data.json');
 
-    res.send(true);
+module.exports = {
+  getData(req, res) {
+    console.log('getData invoked!');
+    res.send(data[0]);
   }
 }
