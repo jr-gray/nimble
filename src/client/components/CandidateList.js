@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CandidateListEntry from './CandidateListEntry';
-import { Button, Modal, Navbar } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 export default class CandidateList extends Component {
   constructor() {
@@ -10,7 +10,7 @@ export default class CandidateList extends Component {
       candidates: [],
       selectedCandidate: '',
       showModal: false,
-      sort: ''
+      name: '',
     }
     this.getData = this.getData.bind(this);
     this.open = this.open.bind(this);
@@ -41,19 +41,17 @@ export default class CandidateList extends Component {
     .catch(err => console.log(err));
   }
 
-  sortData() {
+  sortData(e) {
     let candidates = this.state.candidates;
-    let sort = this.state.sort;
+    let id = e.target.id;
+    let sort = this.state[id];
 
     if (sort === 'desc') {
-      // sort ascending
-      // set new candidates list
-      // set state to 'asc'
-      candidates.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0) ); 
-      this.setState({ candidates }, () => this.setState({ sort: 'asc' }));
+      candidates.sort((a,b) => (a[id] > b[id]) ? 1 : ((b[id] > a[id]) ? -1 : 0) ); 
+      this.setState({ candidates }, () => this.setState({ [id]: 'asc' }));
     } else {
-      candidates.sort((a,b) => (b.name > a.name) ? 1 : ((a.name > b.name) ? -1 : 0) ); 
-      this.setState({ candidates }, () => this.setState({ sort: 'desc' }));
+      candidates.sort((a,b) => (b[id] > a[id]) ? 1 : ((a[id] > b[id]) ? -1 : 0) ); 
+      this.setState({ candidates }, () => this.setState({ [id]: 'desc' }));
     }
   }
 
@@ -67,10 +65,10 @@ export default class CandidateList extends Component {
             <Modal.Title>{this.state.selectedCandidate.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {<p className="candidate-info">id: {this.state.selectedCandidate.id}</p>}
-            {<p className="candidate-info">username: {this.state.selectedCandidate.username}</p>}
-            {<p className="candidate-info">name: {this.state.selectedCandidate.name}</p>}
-            {<p className="candidate-info">email: {this.state.selectedCandidate.email}</p>}
+            {<p className="candidate-info"><b>ID:</b> {this.state.selectedCandidate.id}</p>}
+            {<p className="candidate-info"><b>Username:</b> {this.state.selectedCandidate.username}</p>}
+            {<p className="candidate-info"><b>Applicant Name:</b> {this.state.selectedCandidate.name}</p>}
+            {<p className="candidate-info"><b>Applicant Email:</b> {this.state.selectedCandidate.email}</p>}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
@@ -78,13 +76,13 @@ export default class CandidateList extends Component {
         </Modal>
 
         <div className="row candidate-list-header">
-          <div className="col-md-2 text-center sort-header" onClick={this.sortData}>Applicant</div>
+          <div className="col-md-2 sort-header" id="name" onClick={this.sortData}>Applicant</div>
           <div className="col-md-1"></div>
           <div className="col-md-3">Status</div>
-          <div className="col-md-1">Application Date</div>
+          <div className="col-md-1">App. Date</div>
           <div className="col-md-2">Last Action</div>
           <div className="col-md-2">Location</div>
-          <div className="col-md-1">Go To Profile</div>
+          <div className="col-md-1">Profile</div>
         </div>
 
         <div>
