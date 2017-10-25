@@ -8,6 +8,10 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+.candidate-list-header {
+  font-size: 1.4rem;
+}
+
 .list-entry {
   padding: 2rem 0 1rem;
   font-size: 1.3rem;
@@ -31,4 +35,8 @@ html {
 
 .entry-margin {
   margin-top: 1rem;
+}
+
+.sort-header {
+  cursor: pointer;
 }

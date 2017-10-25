@@ -47,7 +47,7 @@ export default class CandidateListEntry extends Component {
           {candidate.applications[0].status}
         </div>
         <div className="col-md-1 entry-margin"><p>{applicationDate}</p></div>
-        <div className="col-md-2 entry-margin">{'No Action'}</div>
+        <div className="col-md-2 entry-margin text-center">{'No Action'}</div>
         <div className="col-md-2 entry-margin">{candidate.profile.address_city}</div>
         <div className="col-md-1 entry-margin">&rarr;</div>
       </div>
