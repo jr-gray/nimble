@@ -22,7 +22,8 @@ html {
   background-color: white;
 }
 
-.candidate-info {
+.candidate-info,
+.navbar-brand {
   font-size: 1.4rem;
 }
 
@@ -45,4 +46,10 @@ html {
 
 .nav {
   font-size: 1.2rem;
+}
+
+@media screen and (min-width: 992px) {
+  .action {
+      text-align: center;
+  }
 }

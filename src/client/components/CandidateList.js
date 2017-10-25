@@ -57,18 +57,22 @@ export default class CandidateList extends Component {
 
   render() {
 
+    let candidate = this.state.selectedCandidate;
+    let phone = candidate.profile ? candidate.profile.phone_cell : 'None';
+
     return (
       <div className="container">
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title>{this.state.selectedCandidate.name}</Modal.Title>
+            <Modal.Title>{candidate.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {<p className="candidate-info"><b>ID:</b> {this.state.selectedCandidate.id}</p>}
-            {<p className="candidate-info"><b>Username:</b> {this.state.selectedCandidate.username}</p>}
-            {<p className="candidate-info"><b>Applicant Name:</b> {this.state.selectedCandidate.name}</p>}
-            {<p className="candidate-info"><b>Applicant Email:</b> {this.state.selectedCandidate.email}</p>}
+            {<p className="candidate-info">ID: {candidate.id}</p>}
+            {<p className="candidate-info">Username: {candidate.username}</p>}
+            {<p className="candidate-info">Applicant Name: {candidate.name}</p>}
+            {<p className="candidate-info">Applicant Email: {candidate.email}</p>}
+            {<p className="candidate-info">Applicant Phone: {phone}</p>}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
@@ -80,7 +84,7 @@ export default class CandidateList extends Component {
           <div className="col-md-1"></div>
           <div className="col-md-3">Status</div>
           <div className="col-md-1">App. Date</div>
-          <div className="col-md-2">Last Action</div>
+          <div className="col-md-2 action">Last Action</div>
           <div className="col-md-2">Location</div>
           <div className="col-md-1">Profile</div>
         </div>
